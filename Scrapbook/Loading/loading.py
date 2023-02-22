@@ -1,7 +1,8 @@
 a = 0
-b = 100
+b = 30
 max = b
 direction = 'up'
+i = 0
 
 while i != -1:
     i = 0
