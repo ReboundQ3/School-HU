@@ -2,6 +2,7 @@
 import urllib.request as requests
 from urllib.request import urlopen
 import json
+import pprint
 
 # api key: 3B9518C4F0770B32EC2AB7A6B635E077
 
@@ -24,8 +25,13 @@ print("=========================================================================
 #x = data_json['personaname']
 #print(x)
     
-print("Type:", type(data_json))
+#print("Type:", type(data_json))
 #print("\nSteamdata", data_json['personaname'])
+
+pprint.pprint(data_json['response']['players'][0]['personaname'])
+# print(data_json[response])
+
+#SQLLITE GEBRUKEN ?
     
 
 # %%
