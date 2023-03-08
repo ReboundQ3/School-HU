@@ -19,5 +19,13 @@ data_json = json.loads(response.read())
 
 print(data_json)
 
+print("===================================================================================================")
+
+#x = data_json['personaname']
+#print(x)
+    
+print("Type:", type(data_json))
+#print("\nSteamdata", data_json['personaname'])
+    
 
 # %%
