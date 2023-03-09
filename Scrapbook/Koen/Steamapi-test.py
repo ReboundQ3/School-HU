@@ -28,6 +28,8 @@ print("=========================================================================
 #print("Type:", type(data_json))
 #print("\nSteamdata", data_json['personaname'])
 
+pprint.pprint(data_json)
+print("===================================================================================================")
 pprint.pprint(data_json['response']['players'][0]['personaname'])
 # print(data_json[response])
 
