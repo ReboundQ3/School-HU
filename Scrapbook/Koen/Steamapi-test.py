@@ -1,4 +1,9 @@
 #%%
+
+# Koen API -> Json TEST V1.1
+#
+# Aan te raden om met Jypyter te runnen
+
 import urllib.request as requests
 from urllib.request import urlopen
 import json
