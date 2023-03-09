@@ -34,6 +34,7 @@ pprint.pprint(data_json['response']['players'][0]['personaname'])
 # print(data_json[response])
 
 #SQLLITE GEBRUKEN ?
+#Werk
     
 
 # %%
