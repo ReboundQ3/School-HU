@@ -39,7 +39,7 @@ pprint.pprint(data_json['response']['players'][0]['personaname'])
 # print(data_json[response])
 
 #SQLLITE GEBRUKEN ?
-#Werk
+#Thuis
 #Koen Git credentials z6ugwyvaic3wp5ujr3ftullejjc3hs4aggdade3qrge32p2jhhpa
 #Koen Token pybu6qltnuke3dxkbsd5m2thxzvqi2q6eal3flmmhigk3dse2b4q
     
