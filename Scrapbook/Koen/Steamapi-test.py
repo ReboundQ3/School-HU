@@ -1,18 +1,31 @@
 #%%
-
-# Koen API -> Json TEST V1.1
+# Steamapi-test.py V1.1
 #
-# Aan te raden om met Jypyter te runnen
+# STEAM API -> Json TEST
+#
+# Aan te raden om met Jypyter te runnen want dan print hij wat beter
 
-import urllib.request as requests
+import urllib as url
 from urllib.request import urlopen
 import json
 import pprint
+import matplotlib.pyplot as plt
+import numpy as np
+from PIL import Image
+import climage
 
 # api key: 3B9518C4F0770B32EC2AB7A6B635E077
 
-#respone_API = requests.get('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=281990&key=3B9518C4F0770B32EC2AB7A6B635E077&steamid=76561198044252418&format=json')
-#print(respone_API.status_code)
+# API RESPONSE CHECKER 200 == OK
+respone_API = urlopen('http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=281990&key=3B9518C4F0770B32EC2AB7A6B635E077&steamid=76561198044252418&format=json')
+#print(respone_API.getcode())
+respone_API_code = respone_API.getcode()
+
+if respone_API_code == 200:
+    print("> STEAM API OK")
+else:
+    print("> STEAM API ERROR")
+
 
 #Stellaris game Achievements
 #url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=281990&key=3B9518C4F0770B32EC2AB7A6B635E077&steamid=76561198044252418&format=json"
@@ -23,19 +36,26 @@ response = urlopen(url)
 
 data_json = json.loads(response.read())
 
+print("===================================================================================================")
+
+#JSON DATA STAGE 1
 print(data_json)
 
 print("===================================================================================================")
 
-#x = data_json['personaname']
-#print(x)
-    
-#print("Type:", type(data_json))
-#print("\nSteamdata", data_json['personaname'])
-
+#JSON DATA STAGE 2
 pprint.pprint(data_json)
 print("===================================================================================================")
+
+#JSON DATA STAGE 3
 pprint.pprint(data_json['response']['players'][0]['personaname'])
+
+#JSON DATA STAGE 4
+steam_avatar_URL_GET = data_json['response']['players'][0]['avatarfull']
+steam_avatar_URL_OPEN = urlopen(steam_avatar_URL_GET)
+steam_avatar_URL_JPG = Image.open(steam_avatar_URL_OPEN)
+steam_avatar_URL_JPG.show()
+
 # print(data_json[response])
 
 #SQLLITE GEBRUKEN ?
