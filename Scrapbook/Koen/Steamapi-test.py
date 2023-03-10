@@ -12,7 +12,6 @@ import pprint
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
-import climage
 
 # api key: 3B9518C4F0770B32EC2AB7A6B635E077
 
