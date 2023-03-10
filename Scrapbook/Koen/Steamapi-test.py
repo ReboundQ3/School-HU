@@ -6,12 +6,14 @@
 # Aan te raden om met Jypyter te runnen want dan print hij wat beter
 
 import urllib as url
+import urllib.request
 from urllib.request import urlopen
 import json
 import pprint
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
+import os
 
 # api key: 3B9518C4F0770B32EC2AB7A6B635E077
 
@@ -37,23 +39,31 @@ data_json = json.loads(response.read())
 
 print("===================================================================================================")
 
-#JSON DATA STAGE 1
+#JSON DATA STAGE 1 | print gwn de gehele dict
 print(data_json)
 
 print("===================================================================================================")
 
-#JSON DATA STAGE 2
+#JSON DATA STAGE 2 | print de hele dict in pretty print
 pprint.pprint(data_json)
 print("===================================================================================================")
 
-#JSON DATA STAGE 3
+#JSON DATA STAGE 3 | Print de steam naam van de player uit de dict in terminal
 pprint.pprint(data_json['response']['players'][0]['personaname'])
+print("===================================================================================================")
 
-#JSON DATA STAGE 4
+#JSON DATA STAGE 4 | Opent plaatje van steamavatar in default fotobewerker
 steam_avatar_URL_GET = data_json['response']['players'][0]['avatarfull']
 steam_avatar_URL_OPEN = urlopen(steam_avatar_URL_GET)
 steam_avatar_URL_JPG = Image.open(steam_avatar_URL_OPEN)
-steam_avatar_URL_JPG.show()
+#steam_avatar_URL_JPG.show()
+
+#JSON DATA STAGE 5 | Opent plaatje in terminal \o/ door middel van het downloaden van JPG en ruimt hem weer op
+urllib.request.urlretrieve(steam_avatar_URL_GET, "avatar.jpg")
+steam_avatar_URL_PIC = np.asarray(Image.open("avatar.jpg"))
+# pprint.pprint(repr(steam_avatar_URL_PIC))
+steam_avatar_URL_SHOW = plt.imshow(steam_avatar_URL_PIC)
+os.remove("avatar.jpg")
 
 # print(data_json[response])
 
