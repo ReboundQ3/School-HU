@@ -17,8 +17,10 @@ API_Link_Response = API_Link.getcode()
 
 if API_Link_Response == 200:
     print("> NASA API OK | Code:", API_Link_Response)
+    print("==================================================================")
 else:
     print("> NASA API ERROR | Code:", API_Link_Response)
+    print("==================================================================")
 
 API_Link_DATA = json.loads(API_Link.read())
 pprint.pprint(API_Link_DATA)
