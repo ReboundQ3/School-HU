@@ -59,17 +59,13 @@ print("=========================================================================
 steam_avatar_URL_GET = data_json['response']['players'][0]['avatarfull']
 steam_avatar_URL_OPEN = urlopen(steam_avatar_URL_GET)
 steam_avatar_URL_JPG = Image.open(steam_avatar_URL_OPEN)
-# steam_avatar_URL_JPG.show()
+steam_avatar_URL_JPG.show()
 
 # JSON DATA STAGE 5 | Opent plaatje in terminal \o/ door middel van het downloaden van JPG en ruimt hem weer op
-urllib.request.urlretrieve(steam_avatar_URL_GET, "avatar.jpg")
-steam_avatar_URL_PIC = np.asarray(Image.open("avatar.jpg"))
-# pprint.pprint(repr(steam_avatar_URL_PIC))
-steam_avatar_URL_SHOW = plt.imshow(steam_avatar_URL_PIC)
-os.remove("avatar.jpg")
-
-#print(data_json[response])
-
-# SQLLITE GEBRUKEN ?
-# Thuis test 2
+#urllib.request.urlretrieve(steam_avatar_URL_GET, "avatar.jpg")
+#steam_avatar_URL_PIC = np.asarray(Image.open("avatar.jpg"))
+#pprint.pprint(repr(steam_avatar_URL_PIC))
+#print("===================================================================================================")
+#plt.axis('off')
+#steam_avatar_URL_SHOW = plt.imshow(steam_avatar_URL_PIC)
 # %%
