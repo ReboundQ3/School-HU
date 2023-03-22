@@ -57,6 +57,7 @@ for game in gamesToCheck:
     print("Current players playing " + game + ": ", end="")
     
     url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(gamesToCheck[game])
+    #url = "https://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=" + str(gamesToCheck[game])
     response = urlopen(url)
     # print("===================================================================================================")
     data_json = json.loads(response.read())
