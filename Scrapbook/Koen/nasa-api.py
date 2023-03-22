@@ -78,10 +78,12 @@ get = CUR.execute("SELECT * FROM data")
 get.fetchall()
 
 def import_data():
-    CUR.execute("INSERT INTO data VALUES(?, ?, ?, ?)",
-        (DB_DATA_DATE, DB_DATA_TITLE, DB_DATA_DESC, DB_DATA_URL))
+    CUR.execute("INSERT INTO data (date, title, explaination, url) VALUES (?, ?, ?, ?)",
+                (DB_DATA_DATE, DB_DATA_TITLE, DB_DATA_DESC, DB_DATA_URL))
     DB_CON.commit()
+    DB_CON.close()
 
+import_data()
 #> Image laten zien
 
 # API_Link_URL = urlopen(API_Link_DATA['hdurl'])
