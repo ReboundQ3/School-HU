@@ -50,10 +50,7 @@ gamesToCheck = {
     "Stellaris" : 281990,
     "BF2042" : 1517290
 }
-# gamesToCheck = {
-#     "Name" : ["RocketLeague","TF2","CS:GO","Terria","Stellaris","BF2042"],
-#     "AppID" : [252950, 440, 730, 105600, 281990, 1517290]
-# }
+
 
 for game in gamesToCheck:
     # Number of players
