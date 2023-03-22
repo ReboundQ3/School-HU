@@ -37,22 +37,44 @@ else:
 #url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=281990&key=3B9518C4F0770B32EC2AB7A6B635E077&steamid=76561198044252418&format=json"
 # Playerdata Koen's account (ReboundQ3)
 #url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=3B9518C4F0770B32EC2AB7A6B635E077&steamids=76561198044252418&format=json"
-url = "http://store.steampowered.com/api/featuredcategories/?l=english"
-url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=80924"
-response = urlopen(url)
+# Featured items
+#url = "http://store.steampowered.com/api/featuredcategories/?l=english"
 
-data_json = json.loads(response.read())
 
-print("===================================================================================================")
+# RocketLeague, TF2, CS:GO, Terraria, Stellaris, BF 2042
+gamesToCheck = {
+    "RocketLeague" : 252950,
+    "TF2" : 440, 
+    "CS:GO" : 730,
+    "Terria" : 105600,
+    "Stellaris" : 281990,
+    "BF2042" : 1517290
+}
+# gamesToCheck = {
+#     "Name" : ["RocketLeague","TF2","CS:GO","Terria","Stellaris","BF2042"],
+#     "AppID" : [252950, 440, 730, 105600, 281990, 1517290]
+# }
 
-# JSON DATA STAGE 1 | print gwn de gehele dict
-print(data_json)
+for game in gamesToCheck:
+    # Number of players
+    print("Current players playing " + game + ": ", end="")
+    
+    url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(gamesToCheck[game])
+    response = urlopen(url)
+    # print("===================================================================================================")
+    data_json = json.loads(response.read())
+    #print(data_json)
+    print(data_json['response']['player_count'])
 
-print("===================================================================================================")
+# 
 
-# JSON DATA STAGE 2 | print de hele dict in pretty print
-pprint.pprint(data_json)
-print("===================================================================================================")
+
+
+# print("===================================================================================================")
+
+# # JSON DATA STAGE 2 | print de hele dict in pretty print
+# pprint.pprint(data_json)
+# print("===================================================================================================")
 
 # # JSON DATA STAGE 3 | Print de steam naam van de player uit de dict in terminal
 # pprint.pprint(data_json['response']['players'][0]['personaname'])
