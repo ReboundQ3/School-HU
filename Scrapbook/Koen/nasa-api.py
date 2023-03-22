@@ -27,7 +27,7 @@ if path.exists("nasatest.db"):
 else:
     print("> NASA DB CREATED")
     DB_CON = sqlite3.connect("nasatest.db")
-    DB_CON.cursor()
+    CUR = DB_CON.cursor()
     DB_CON.execute("CREATE TABLE data(date, title, explaination, url)")
 
 print("==================================================================")
