@@ -74,8 +74,8 @@ print("==================================================================")
 
 #> Data -> DB
 
-get = CUR.execute("SELECT * FROM data")
-get.fetchall()
+
+#CUR.execute("SELECT * FROM data ORDER BY date DESC;")
 
 def import_data():
     CUR.execute("INSERT INTO data (date, title, explaination, url) VALUES (?, ?, ?, ?)",
