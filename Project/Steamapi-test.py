@@ -76,16 +76,12 @@ gamesToCheck = {
     "BF2042" : 1517290
 }
 
-url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?gameid="
-response = urlopen(url)
-data_json = json.loads(response.read())['applist']['apps']
-i = 0
-for item in data_json:
-    #print(item)
-    i += 1
-print(i)
-
-
+for game in gamesToCheck:
+    game_name = game
+    game_id = gamesToCheck[game]
+    CUR.execute("INSERT INTO tbl_games(game_id, game_name) VALUES (?, ?)",
+                (game_id, game_name))
+    
 
 # print("===================================================================================================")
 
