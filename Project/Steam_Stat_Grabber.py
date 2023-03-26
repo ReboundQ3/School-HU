@@ -2,21 +2,18 @@
 #%%
 #Steam_Stat_Grabber.py
 
-import os
+# Importeren modules
 import sqlite3
 import pprint
-
+import json
 from os import path
-from datetime import date
 from datetime import datetime
+from urllib.request import urlopen
 
+# Get current datetime in format: DD/MM/YYYY HH:MM
+dateTime = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-# Datum van vandaag ophalen 
-vandaag = datetime.now()
-vandaag_afgk = vandaag.strftime("%d/%m/%Y %H:%M")
-print(vandaag_afgk)
-
-# SQLite DB checker
+# Check if SQLite DB exist and connect to it
 if path.exists("steamdb.db"):
     print("> STEAM DB CONNECTED")
     DB_CON = sqlite3.connect("steamdb.db")
@@ -24,17 +21,31 @@ if path.exists("steamdb.db"):
 else:
     print("> STEAM DB DOES NOT EXIST")
 
-# DB_CUR.execute("DELETE FROM tbl_stats")
-# DB_CUR.execute("INSERT INTO tbl_stats(game_id, game_name) SELECT game_id, game_name FROM tbl_games")
-# DB_CUR.execute("UPDATE tbl_stats SET date = (?)", (vandaag_afgk,)), "WHERE date is NULL"
-# DB_CON.commit()
+# Define function to get playercount from API
+def playerCount(gameID):
+    playerCountURL = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(gameID)
+    response = urlopen(playerCountURL)
+    players = json.loads(response.read())['response']['player_count']
+    return players
 
-gameslist_in = DB_CUR.execute("SELECT game_id, game_name from tbl_games")
-gameslist_out = dict(gameslist_in)
-pprint.pprint(dict(gameslist_out))
-for game in gameslist_out:
-    game_id  = game
-    game_name = gameslist_out[game]
-    playercount = "891398" # Ophalen via api
-    DB_CUR.execute("INSERT INTO tbl_stats(date, game_id, game_name, playercount) VALUES (?, ?, ?, ?)", (vandaag_afgk, game_id, game_name, playercount))
-# %%
+# Get game IDs and names from tbl_games
+gameList = dict(DB_CUR.execute("SELECT game_id, game_name from tbl_games"))
+
+# Cleanup database
+# DB_CUR.execute("DELETE FROM tbl_stats")
+
+# Insert the collected stats into tbl_stats
+for game in gameList:
+    gameID  = game
+    gameName = gameList[game]
+    playercount = playerCount(gameID)
+    
+    sql = '''INSERT INTO tbl_stats(date, game_id, game_name, playercount)
+        VALUES (?, ?, ?, ?)'''
+    
+    input = (dateTime, gameID, gameName, playercount)
+    DB_CUR.execute(sql, input)
+    DB_CON.commit()
+
+
+
