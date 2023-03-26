@@ -2,7 +2,6 @@
 #%%
 #Steam_Stat_Grabber.py
 
-
 # Import modules
 import sqlite3
 import pprint
@@ -17,11 +16,11 @@ dateTime = datetime.now().strftime("%d/%m/%Y %H:%M")
 
 
 # Check if SQLite DB exist and connect to it
-if path.exists("steamdb.db"):
-    print("> STEAM DB CONNECTED")
+try:    
     DB_CON = sqlite3.connect("steamdb.db")
     DB_CUR = DB_CON.cursor()
-else:
+    print("> STEAM DB CONNECTED")
+except:
     print("> STEAM DB DOES NOT EXIST")
 
 
