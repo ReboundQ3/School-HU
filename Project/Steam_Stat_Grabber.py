@@ -2,7 +2,7 @@
 #%%
 #Steam_Stat_Grabber.py
 
-# Importeren modules
+# Import modules
 import sqlite3
 import pprint
 import json
