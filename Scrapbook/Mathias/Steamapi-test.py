@@ -33,15 +33,23 @@ else:
     print("> STEAM API ERROR")
 
 
-url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?gameid="
-response = urlopen(url)
+allGameURL = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?gameid="
+response = urlopen(allGameURL)
 data_json = json.loads(response.read())['applist']['apps']
-
-collector = []
+i = 0
+collector = {}
 for item in data_json:
-    url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(item['appid'])
-    response = urlopen(url)
-    data_json = json.loads(response.read())['response']['player_count']
-    collector += data_json
+    try:
+        gameStatURL = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(item['appid'])
+        response = urlopen(gameStatURL)
+        data_json = json.loads(response.read())['response']['player_count']
+        
+        collector[item['appid']] = data_json
+        
+    except:
+        #print("No data found")
+        i += 1
     
+
+print(i)
 print(collector)
