@@ -41,14 +41,6 @@ if respone_API_code == 200:
 else:
     print("> STEAM API ERROR ", respone_API_code)
 
-
-# Stellaris game Achievements
-#url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=281990&key=3B9518C4F0770B32EC2AB7A6B635E077&steamid=76561198044252418&format=json"
-# Playerdata Koen's account (ReboundQ3)
-#url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=3B9518C4F0770B32EC2AB7A6B635E077&steamids=76561198044252418&format=json"
-# Featured items
-#url = "http://store.steampowered.com/api/featuredcategories/?l=english"
-
 # > DB
 
 print("==================================================================")
@@ -76,36 +68,12 @@ gamesToCheck = {
     "BF2042" : 1517290
 }
 
+CUR.execute("DELETE FROM tbl_games")
 for game in gamesToCheck:
     game_name = game
     game_id = gamesToCheck[game]
     CUR.execute("INSERT INTO tbl_games(game_id, game_name) VALUES (?, ?)",
                 (game_id, game_name))
+    DB_CON.commit()
     
-
-# print("===================================================================================================")
-
-# # JSON DATA STAGE 2 | print de hele dict in pretty print
-# pprint.pprint(data_json)
-# print("===================================================================================================")
-
-# # JSON DATA STAGE 3 | Print de steam naam van de player uit de dict in terminal
-# pprint.pprint(data_json['response']['players'][0]['personaname'])
-# print("===================================================================================================")
-
-# # JSON DATA STAGE 4 | Opent plaatje van steamavatar in default fotobewerker
-# steam_avatar_URL_GET = data_json['response']['players'][0]['avatarfull']
-# steam_avatar_URL_OPEN = urlopen(steam_avatar_URL_GET)
-# steam_avatar_URL_JPG = Image.open(steam_avatar_URL_OPEN)
-# steam_avatar_URL_JPG.show()
-
-# # JSON DATA STAGE 5 | Opent plaatje in terminal \o/ door middel van het downloaden van JPG en ruimt hem weer op
-# #urllib.request.urlretrieve(steam_avatar_URL_GET, "avatar.jpg")
-# #steam_avatar_URL_PIC = np.asarray(Image.open("avatar.jpg"))
-# #pprint.pprint(repr(steam_avatar_URL_PIC))
-# #print("===================================================================================================")
-# #plt.axis('off')
-# #steam_avatar_URL_SHOW = plt.imshow(steam_avatar_URL_PIC)
-# # %%
-
 # %%
