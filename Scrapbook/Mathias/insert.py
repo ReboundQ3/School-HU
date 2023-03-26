@@ -1,4 +1,4 @@
-gameslist = DB_CUR.execute("SELECT game_id, game_name from tbl_games")
+
 vandaag_afgk = "10/10/2022"
 for game in gamelist:
     game_id  = game[0]  
