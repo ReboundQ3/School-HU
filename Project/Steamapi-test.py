@@ -12,9 +12,9 @@ import urllib.request
 from urllib.request import urlopen
 import json
 import pprint
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # pip install matplotlib
 import numpy as np
-from PIL import Image
+from PIL import Image # pip install pillow
 import os
 
 # Koen Git credentials z6ugwyvaic3wp5ujr3ftullejjc3hs4aggdade3qrge32p2jhhpa
