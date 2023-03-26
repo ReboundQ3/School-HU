@@ -15,3 +15,4 @@ else:
     print("> STEAM DB DOES NOT EXIST")
 
 DB_CUR.execute("DELETE FROM tbl_stats")
+DB_CON.commit()
