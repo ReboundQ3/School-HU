@@ -1,8 +1,6 @@
 #%%
 #> Koen's pretty pictures by NASA script.
 #> Imports
-import urllib3 as url
-import urllib3.request as req
 import json
 import pprint
 from urllib.request import urlopen
