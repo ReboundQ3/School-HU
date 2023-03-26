@@ -33,42 +33,15 @@ else:
     print("> STEAM API ERROR")
 
 
-# Stellaris game Achievements
-#url = "http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v0002/?appid=281990&key=3B9518C4F0770B32EC2AB7A6B635E077&steamid=76561198044252418&format=json"
-# Playerdata Koen's account (ReboundQ3)
-#url = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=3B9518C4F0770B32EC2AB7A6B635E077&steamids=76561198044252418&format=json"
-# Featured items
-#url = "http://store.steampowered.com/api/featuredcategories/?l=english"
-
-
-# RocketLeague, TF2, CS:GO, Terraria, Stellaris, BF 2042
-gamesToCheck = {
-    "RocketLeague" : 252950,
-    "TF2" : 440, 
-    "CS:GO" : 730,
-    "Terria" : 105600,
-    "Stellaris" : 281990,
-    "BF2042" : 1517290
-}
-
-
-# for game in gamesToCheck:
-#     # Number of players
-#     print("Current players playing " + game + ": ", end="")
-    
-#     url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(gamesToCheck[game])
-#     #url = "https://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=" + str(gamesToCheck[game])
-#     response = urlopen(url)
-#     # print("===================================================================================================")
-#     data_json = json.loads(response.read())
-#     #print(data_json)
-#     print(data_json['response']['player_count'])
-
 url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?gameid="
 response = urlopen(url)
 data_json = json.loads(response.read())['applist']['apps']
-i = 0
+
+collector = []
 for item in data_json:
-    #print(item)
-    i += 1
-print(i)
+    url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(item['appid'])
+    response = urlopen(url)
+    data_json = json.loads(response.read())['response']['player_count']
+    collector += data_json
+    
+print(collector)
