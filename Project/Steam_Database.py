@@ -1,10 +1,5 @@
 #%%
-# Steamapi-test.py V1.1
-#
-# STEAM API -> Json TEST
-#
-# Aan te raden om met Jypyter te runnen want dan print hij wat beter
-
+#Steam_Database.py
 # Alle imports
 
 import os
