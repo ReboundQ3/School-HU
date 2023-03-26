@@ -52,43 +52,23 @@ gamesToCheck = {
 }
 
 
-for game in gamesToCheck:
-    # Number of players
-    print("Current players playing " + game + ": ", end="")
+# for game in gamesToCheck:
+#     # Number of players
+#     print("Current players playing " + game + ": ", end="")
     
-    url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(gamesToCheck[game])
-    #url = "https://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=" + str(gamesToCheck[game])
-    response = urlopen(url)
-    # print("===================================================================================================")
-    data_json = json.loads(response.read())
-    #print(data_json)
-    print(data_json['response']['player_count'])
+#     url = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + str(gamesToCheck[game])
+#     #url = "https://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=" + str(gamesToCheck[game])
+#     response = urlopen(url)
+#     # print("===================================================================================================")
+#     data_json = json.loads(response.read())
+#     #print(data_json)
+#     print(data_json['response']['player_count'])
 
-# 
-
-
-
-# print("===================================================================================================")
-
-# # JSON DATA STAGE 2 | print de hele dict in pretty print
-# pprint.pprint(data_json)
-# print("===================================================================================================")
-
-# # JSON DATA STAGE 3 | Print de steam naam van de player uit de dict in terminal
-# pprint.pprint(data_json['response']['players'][0]['personaname'])
-# print("===================================================================================================")
-
-# # JSON DATA STAGE 4 | Opent plaatje van steamavatar in default fotobewerker
-# steam_avatar_URL_GET = data_json['response']['players'][0]['avatarfull']
-# steam_avatar_URL_OPEN = urlopen(steam_avatar_URL_GET)
-# steam_avatar_URL_JPG = Image.open(steam_avatar_URL_OPEN)
-# steam_avatar_URL_JPG.show()
-
-# # JSON DATA STAGE 5 | Opent plaatje in terminal \o/ door middel van het downloaden van JPG en ruimt hem weer op
-# #urllib.request.urlretrieve(steam_avatar_URL_GET, "avatar.jpg")
-# #steam_avatar_URL_PIC = np.asarray(Image.open("avatar.jpg"))
-# #pprint.pprint(repr(steam_avatar_URL_PIC))
-# #print("===================================================================================================")
-# #plt.axis('off')
-# #steam_avatar_URL_SHOW = plt.imshow(steam_avatar_URL_PIC)
-# # %%
+url = "https://api.steampowered.com/ISteamApps/GetAppList/v2/?gameid="
+response = urlopen(url)
+data_json = json.loads(response.read())['applist']['apps']
+i = 0
+for item in data_json:
+    #print(item)
+    i += 1
+print(i)
