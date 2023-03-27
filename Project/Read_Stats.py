@@ -3,9 +3,24 @@ import sqlite3
 from os import path
 import PySimpleGUI as sg
 import matplotlib.pyplot as plt
+import paramiko
+from scp import SCPClient
+
+
+def createSSHClient(server, port, user, password):
+    client = paramiko.SSHClient()
+    client.load_system_host_keys()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(server, port, user, password)
+    return client
+
+ssh = createSSHClient("20.8.110.244", 22, "root", "ML48%u$cfkp2xSGeqHZnxG^Y3")
+scp = SCPClient(ssh.get_transport())
+
+scp.get('/project/steamdb.db')
 
 # Check if SQLite DB exist and connect to it
-try:    
+try:
     DB_CON = sqlite3.connect("steamdb.db")
     DB_CUR = DB_CON.cursor()
     print("> STEAM DB CONNECTED")
@@ -43,5 +58,6 @@ for stat in stats:
     dates.append(stat[0])
     players.append(stat[3])
 
-plt.plot(dates, players)
+plt.figure(figsize=(25,13))
+plt.plot(dates,players)
 plt.show()
