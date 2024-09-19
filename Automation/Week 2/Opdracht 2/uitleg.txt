@@ -1,0 +1,8 @@
+2.Een hacker heeft een bestand ‘password.txt’ gevonden. Dit bestand bevat de volgende inhoud:
+f00bdeb2cd9da240a57c951fdf1bcba509fd0cd83c5e5ad9a669de12
+o De hacker weet dat de inhoud tot stand is gekomen met behulp van de onderstaande code
+waarbij op de plaats van de vraagteken een hoofdletter heeft gestaan. Weet jij welke hoofdletter
+dit zou is geweest?
+print(hashlib.sha224(b"?").hexdigest())
+
+f00bdeb2cd9da240a57c951fdf1bcba509fd0cd83c5e5ad9a669de12 = X
