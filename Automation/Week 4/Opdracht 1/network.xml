@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<network>
+    <clients>
+        <client>
+            <name>Client1</name>
+            <ipAddress>192.168.1.10</ipAddress>
+            <os>Windows 10</os>
+        </client>
+        <client>
+            <name>Client2</name>
+            <ipAddress>192.168.1.11</ipAddress>
+            <os>Windows 10</os>
+        </client>
+        <client>
+            <name>Client3</name>
+            <ipAddress>192.168.1.12</ipAddress>
+            <os>Windows 10</os>
+        </client>
+        <client>
+            <name>Client4</name>
+            <ipAddress>192.168.1.13</ipAddress>
+            <os>Windows 10</os>
+        </client>
+        <client>
+            <name>Client5</name>
+            <ipAddress>192.168.1.14</ipAddress>
+            <os>Windows 7</os>
+        </client>
+    </clients>
+
+    <servers>
+        <server>
+            <name>Server1</name>
+            <ipAddress>192.168.1.20</ipAddress>
+            <os>Windows Server 2016 Standard</os>
+            <hardDisks>
+                <disk>
+                    <driveLetter>C</driveLetter>
+                </disk>
+                <disk>
+                    <driveLetter>D</driveLetter>
+                </disk>
+                <disk>
+                    <driveLetter>E</driveLetter>
+                </disk>
+            </hardDisks>
+        </server>
+        <server>
+            <name>Server2</name>
+            <ipAddress>192.168.1.21</ipAddress>
+            <os>Windows Server 2016 Standard</os>
+            <hardDisks>
+                <disk>
+                    <driveLetter>C</driveLetter>
+                </disk>
+                <disk>
+                    <driveLetter>D</driveLetter>
+                </disk>
+                <disk>
+                    <driveLetter>E</driveLetter>
+                </disk>
+            </hardDisks>
+        </server>
+    </servers>
+</network>

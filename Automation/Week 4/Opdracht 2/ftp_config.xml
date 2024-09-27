@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftpConfiguration>
+    <server>
+        <ftpServer>salt.school.test</ftpServer>
+        <username>Koen</username>
+        <password>P@ssw0rd</password>
+    </server>
+    <paths>
+        <sourceFile>/local/path/to/sourcefile.txt</sourceFile>
+        <destinationDirectory>/remote/path/to/destination</destinationDirectory>
+    </paths>
+    <options>
+        <port>21</port>
+        <passiveMode>true</passiveMode>
+    </options>
+</ftpConfiguration>
