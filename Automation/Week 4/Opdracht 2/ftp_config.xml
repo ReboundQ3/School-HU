@@ -2,7 +2,7 @@
 <ftpConfiguration>
     <server>
         <ftpServer>salt.school.test</ftpServer>
-        <username>Koen</username>
+        <username>koen</username>
         <password>P@ssw0rd</password>
     </server>
     <paths>
